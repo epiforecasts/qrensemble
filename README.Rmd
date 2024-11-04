@@ -23,6 +23,7 @@ pak::pak("epiforecasts/qrensemble")
 
 Create an ensemble for each location, and separately for cases and deaths, for the 24th of July 2021
 ```{r}
+library("qra")
 library("scoringutils")
 example_quantile |>
   as_forecast_quantile() |>
