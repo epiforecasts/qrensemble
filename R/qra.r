@@ -201,6 +201,13 @@ split_forecast <- function(forecast, forecast_unit, target) {
 ##' @importFrom scoringutils as_forecast_quantile get_forecast_unit
 ##' @importFrom checkmate assert_class
 ##' @export
+##' @examples
+##' scoringutils::example_quantile |>
+##'   as_forecast_quantile() |>
+##'   qra(
+##'     group = c("target_type", "location", "location_name"),
+##'     target = c(target_end_date = "2021-07-24")
+##'   )
 qra <- function(forecast, target, group = c(),
                 model = "Quantile Regression Average",
                 per_quantile_weights = FALSE, enforce_normalisation = TRUE,

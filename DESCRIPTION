@@ -24,9 +24,9 @@ Suggests:
     knitr,
     rmarkdown,
     roxyglobals
-Remotes: 
-    ryantibs/quantgen/quantgen,
-    epiforecasts/scoringutils@b370557
+    testthat (>= 3.0.0)
+Remotes:
+    ryantibs/quantgen/quantgen
 License: MIT + file LICENSE.md
 Encoding: UTF-8
 LazyData: true
@@ -36,3 +36,4 @@ RoxygenNote: 7.3.2
 VignetteBuilder: knitr
 Config/roxyglobals/filename: globals.R
 Config/roxyglobals/unique: FALSE
+Config/testthat/edition: 3
