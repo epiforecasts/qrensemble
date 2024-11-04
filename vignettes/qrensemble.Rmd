@@ -4,10 +4,9 @@ output:
   rmarkdown::html_vignette:
     toc: false
     number_sections: false
-bibliography: library.bib
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa-numeric-superscript-brackets.csl
 vignette: >
-  %\VignetteIndexEntry{Getting started with qrensemble}
+  %\VignetteIndexEntry{Getting started with `qrensemble`}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
