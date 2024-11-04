@@ -2,11 +2,11 @@
 
 - The package was renamed to qrensemble to avoid a conflict with the existing qra package on CRAN
 
-# qrensemble 0.1.1
+# qra 0.1.1
 
 - Fixed missing purrr import
 
-# qrensemble 0.1.0
+# qra 0.1.0
 
 This is the initial release of qrensemble.
 
