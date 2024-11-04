@@ -4,20 +4,18 @@
 NB: This is a transient package that will probably be merged into the
 [stackr package](https://github.com/nikosbosse/stackr).
 
-## Prerequisites
+## Installation
 
-This depends on the
-[scoringutils](https://github.com/epiforecasts/scoringutils) package,
-which can be installed with
+The stable version of the package can be installed using
 
 ``` r
-remotes::install_github("epiforecasts/scoringutils")
+install.packages("qrensemble", repos = "https://epiforecasts.r-universe.dev/")
 ```
 
-The code itself can be tested by installing the corresponding package:
+The development version can be installed using `pak`
 
 ``` r
-remotes::install_github("epiforecasts/qra")
+pak::pak("epiforecasts/qrensemble")
 ```
 
 ### calculate QRA
@@ -26,7 +24,16 @@ Create an ensemble for each location, and separately for cases and
 deaths, for the 24th of July 2021
 
 ``` r
+library("qrensemble")
 library("scoringutils")
+```
+
+    ## scoringutils 2.0.0 introduces major changes. We'd love your feedback!
+    ## <https://github.com/epiforecasts/scoringutils/issues>. To use the old version,
+    ## run: `remotes::install_github('epiforecasts/scoringutils@v1.2.2')`
+    ## This message is displayed once per session.
+
+``` r
 example_quantile |>
   as_forecast_quantile() |>
   qra(
@@ -35,14 +42,14 @@ example_quantile |>
   )
 ```
 
-    ## ℹ Some rows containing NA values may be removed. This is fine if not unexpected.
-    ## Forecast type:
-    ## 
-    ## quantile
+    ## ℹ Some rows containing NA values may be removed. This is fine if not
+    ##   unexpected.
+    ## Forecast type: quantile
     ## 
     ## Forecast unit:
     ## 
-    ## location, target_end_date, target_type, location_name, forecast_date, horizon, and model
+    ## location, target_end_date, target_type, location_name, forecast_date, horizon,
+    ## and model
 
     ## 
     ##      quantile_level location target_end_date target_type location_name
@@ -71,3 +78,27 @@ example_quantile |>
     ## 366:    2021-07-12       2  278.7647       78 Quantile Regression Average
     ## 367:    2021-07-05       3  245.7201       78 Quantile Regression Average
     ## 368:    2021-07-12       2  317.7048       78 Quantile Regression Average
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+All contributions to this project are gratefully acknowledged using the
+[`allcontributors` package](https://github.com/ropensci/allcontributors)
+following the [all-contributors](https://allcontributors.org)
+specification. Contributions of any kind are welcome!
+
+### Code
+
+<a href="https://github.com/epiforecasts/qrensemble/commits?author=sbfnk">sbfnk</a>,
+<a href="https://github.com/epiforecasts/qrensemble/commits?author=seabbs">seabbs</a>
+
+### Issues
+
+<a href="https://github.com/epiforecasts/qrensemble/issues?q=is%3Aissue+commenter%3Anikosbosse">nikosbosse</a>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
