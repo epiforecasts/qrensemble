@@ -68,62 +68,89 @@
 <p>NB: This is a transient package that will probably be merged into the <a href="https://github.com/nikosbosse/stackr" class="external-link">stackr package</a>.</p>
 </div>
 <div class="section level2">
-<h2 id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>This depends on the <a href="https://github.com/epiforecasts/scoringutils" class="external-link">scoringutils</a> package, which can be installed with</p>
+<p>The stable version of the package can be installed using</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"epiforecasts/scoringutils"</span><span class="op">)</span></span></code></pre></div>
-<p>The code itself can be tested by installing the corresponding package:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"qrensemble"</span>, repos <span class="op">=</span> <span class="st">"https://epiforecasts.r-universe.dev/"</span><span class="op">)</span></span></code></pre></div>
+<p>The development version can be installed using <code>pak</code></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"epiforecasts/qra"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"epiforecasts/qrensemble"</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="calculate-qra">calculate QRA<a class="anchor" aria-label="anchor" href="#calculate-qra"></a>
 </h3>
 <p>Create an ensemble for each location, and separately for cases and deaths, for the 24th of July 2021</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://doi.org/10.48550/arXiv.2205.07090" class="external-link">"scoringutils"</a></span><span class="op">)</span></span>
-<span><span class="va">example_quantile</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"qrensemble"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://doi.org/10.48550/arXiv.2205.07090" class="external-link">"scoringutils"</a></span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="do">## scoringutils 2.0.0 introduces major changes. We'd love your feedback!</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="do">## &lt;https://github.com/epiforecasts/scoringutils/issues&gt;. To use the old version,</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="do">## run: `remotes::install_github('epiforecasts/scoringutils@v1.2.2')`</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="do">## This message is displayed once per session.</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">example_quantile</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://epiforecasts.io/scoringutils/reference/as_forecast_quantile.html" class="external-link">as_forecast_quantile</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/qra.html">qra</a></span><span class="op">(</span></span>
 <span>    group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"target_type"</span>, <span class="st">"location"</span>, <span class="st">"location_name"</span><span class="op">)</span>,</span>
 <span>    target <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>target_end_date <span class="op">=</span> <span class="st">"2021-07-24"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="do">## ℹ Some rows containing NA values may be removed. This is fine if not unexpected.</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="do">## Forecast type:</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="do">## quantile</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="do">## Forecast unit:</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="do">## location, target_end_date, target_type, location_name, forecast_date, horizon, and model</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="do">##      quantile_level location target_end_date target_type location_name</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="do">##               &lt;num&gt;   &lt;char&gt;          &lt;Date&gt;      &lt;char&gt;        &lt;char&gt;</span></span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="do">##   1:          0.010       DE      2021-07-24       Cases       Germany</span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="do">##   2:          0.010       DE      2021-07-24       Cases       Germany</span></span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="do">##   3:          0.025       DE      2021-07-24       Cases       Germany</span></span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="do">##   4:          0.025       DE      2021-07-24       Cases       Germany</span></span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="do">##   5:          0.050       DE      2021-07-24       Cases       Germany</span></span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="do">##  ---                                                                  </span></span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="do">## 364:          0.950       IT      2021-07-24      Deaths         Italy</span></span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="do">## 365:          0.975       IT      2021-07-24      Deaths         Italy</span></span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="do">## 366:          0.975       IT      2021-07-24      Deaths         Italy</span></span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="do">## 367:          0.990       IT      2021-07-24      Deaths         Italy</span></span>
-<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="do">## 368:          0.990       IT      2021-07-24      Deaths         Italy</span></span>
-<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="do">##      forecast_date horizon predicted observed                       model</span></span>
-<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="do">##             &lt;Date&gt;   &lt;num&gt;     &lt;num&gt;    &lt;num&gt;                      &lt;char&gt;</span></span>
-<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="do">##   1:    2021-07-05       3  688.0000    10616 Quantile Regression Average</span></span>
-<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="do">##   2:    2021-07-12       2 1821.0000    10616 Quantile Regression Average</span></span>
-<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="do">##   3:    2021-07-05       3  792.0000    10616 Quantile Regression Average</span></span>
-<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="do">##   4:    2021-07-12       2 2002.0000    10616 Quantile Regression Average</span></span>
-<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="do">##   5:    2021-07-05       3  913.0000    10616 Quantile Regression Average</span></span>
-<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="do">##  ---                                                                     </span></span>
-<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="do">## 364:    2021-07-12       2  246.3120       78 Quantile Regression Average</span></span>
-<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a><span class="do">## 365:    2021-07-05       3  208.4875       78 Quantile Regression Average</span></span>
-<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a><span class="do">## 366:    2021-07-12       2  278.7647       78 Quantile Regression Average</span></span>
-<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a><span class="do">## 367:    2021-07-05       3  245.7201       78 Quantile Regression Average</span></span>
-<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a><span class="do">## 368:    2021-07-12       2  317.7048       78 Quantile Regression Average</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="do">## ℹ Some rows containing NA values may be removed. This is fine if not</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="do">##   unexpected.</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="do">## Forecast type: quantile</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="do">## Forecast unit:</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="do">## location, target_end_date, target_type, location_name, forecast_date, horizon,</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="do">## and model</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="do">##      quantile_level location target_end_date target_type location_name</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="do">##               &lt;num&gt;   &lt;char&gt;          &lt;Date&gt;      &lt;char&gt;        &lt;char&gt;</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="do">##   1:          0.010       DE      2021-07-24       Cases       Germany</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="do">##   2:          0.010       DE      2021-07-24       Cases       Germany</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="do">##   3:          0.025       DE      2021-07-24       Cases       Germany</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="do">##   4:          0.025       DE      2021-07-24       Cases       Germany</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="do">##   5:          0.050       DE      2021-07-24       Cases       Germany</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="do">##  ---                                                                  </span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="do">## 364:          0.950       IT      2021-07-24      Deaths         Italy</span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="do">## 365:          0.975       IT      2021-07-24      Deaths         Italy</span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="do">## 366:          0.975       IT      2021-07-24      Deaths         Italy</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="do">## 367:          0.990       IT      2021-07-24      Deaths         Italy</span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="do">## 368:          0.990       IT      2021-07-24      Deaths         Italy</span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="do">##      forecast_date horizon predicted observed                       model</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="do">##             &lt;Date&gt;   &lt;num&gt;     &lt;num&gt;    &lt;num&gt;                      &lt;char&gt;</span></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="do">##   1:    2021-07-05       3  688.0000    10616 Quantile Regression Average</span></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="do">##   2:    2021-07-12       2 1821.0000    10616 Quantile Regression Average</span></span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="do">##   3:    2021-07-05       3  792.0000    10616 Quantile Regression Average</span></span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="do">##   4:    2021-07-12       2 2002.0000    10616 Quantile Regression Average</span></span>
+<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="do">##   5:    2021-07-05       3  913.0000    10616 Quantile Regression Average</span></span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="do">##  ---                                                                     </span></span>
+<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a><span class="do">## 364:    2021-07-12       2  246.3120       78 Quantile Regression Average</span></span>
+<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="do">## 365:    2021-07-05       3  208.4875       78 Quantile Regression Average</span></span>
+<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a><span class="do">## 366:    2021-07-12       2  278.7647       78 Quantile Regression Average</span></span>
+<span id="cb6-35"><a href="#cb6-35" tabindex="-1"></a><span class="do">## 367:    2021-07-05       3  245.7201       78 Quantile Regression Average</span></span>
+<span id="cb6-36"><a href="#cb6-36" tabindex="-1"></a><span class="do">## 368:    2021-07-12       2  317.7048       78 Quantile Regression Average</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="contributors">Contributors<a class="anchor" aria-label="anchor" href="#contributors"></a>
+</h2>
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<p>All contributions to this project are gratefully acknowledged using the <a href="https://github.com/ropensci/allcontributors" class="external-link"><code>allcontributors</code> package</a> following the <a href="https://allcontributors.org" class="external-link">all-contributors</a> specification. Contributions of any kind are welcome!</p>
+<div class="section level3">
+<h3 id="code">Code<a class="anchor" aria-label="anchor" href="#code"></a>
+</h3>
+<p><a href="https://github.com/epiforecasts/qrensemble/commits?author=sbfnk" class="external-link">sbfnk</a>, <a href="https://github.com/epiforecasts/qrensemble/commits?author=seabbs" class="external-link">seabbs</a></p>
+</div>
+<div class="section level3">
+<h3 id="issues">Issues<a class="anchor" aria-label="anchor" href="#issues"></a>
+</h3>
+<p><a href="https://github.com/epiforecasts/qrensemble/issues?q=is%3Aissue+commenter%3Anikosbosse" class="external-link">nikosbosse</a></p>
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 </div>
 </div>
 
