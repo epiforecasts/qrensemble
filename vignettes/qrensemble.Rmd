@@ -1,5 +1,5 @@
 ---
-title: "Getting started with `qra`"
+title: "Getting started with `qrensemble`"
 output:
   rmarkdown::html_vignette:
     toc: false
@@ -7,12 +7,12 @@ output:
 bibliography: library.bib
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa-numeric-superscript-brackets.csl
 vignette: >
-  %\VignetteIndexEntry{Getting started with qra}
+  %\VignetteIndexEntry{Getting started with qrensemble}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-The `qra` package can be used to train ensemble models from forecasts given in quantile format. It uses the [quantgen](ryantibs) package for the underlying optimisation.
+The `qrensemble` package can be used to train ensemble models from forecasts given in quantile format. It uses the [quantgen](ryantibs) package for the underlying optimisation.
 
 It works with data frames of forecasts and data, similar to the ones used in the [scoringutils](https://epiforecasts.io/scoringutils) package. The outputs it produces are in the same format.
 

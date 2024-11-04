@@ -7,26 +7,23 @@ output: github_document
 NB: This is a transient package that will probably be merged into the
 [stackr package](https://github.com/nikosbosse/stackr). 
 
-## Prerequisites
+## Installation
 
-This depends on the [scoringutils](https://github.com/epiforecasts/scoringutils)
-package, which can be installed with 
-
+The stable version of the package can be installed using
 ```{r eval=FALSE}
-remotes::install_github("epiforecasts/scoringutils")
+install.packages("qrensemble", repos = "https://epiforecasts.r-universe.dev/")
 ```
 
-The code itself can be tested by installing the corresponding package:
+The development version can be installed using `pak`
 ```{r eval=FALSE}
-remotes::install_github("epiforecasts/qra")
+pak::pak("epiforecasts/qrensemble")
 ```
 
 ### calculate QRA
 
 Create an ensemble for each location, and separately for cases and deaths, for the 24th of July 2021
 ```{r}
-library("scoringutils")
-example_quantile |>
+scoringutils::example_quantile |>
   as_forecast_quantile() |>
   qra(
     group = c("target_type", "location", "location_name"),
