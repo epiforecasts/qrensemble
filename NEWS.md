@@ -1,4 +1,6 @@
-# qra (development version)
+# qrensemble 0.1.2
+
+- The package was renamed to qrensemble to avoid a conflict with the existing qra package on CRAN
 
 # qra 0.1.1
 
@@ -6,5 +8,5 @@
 
 # qra 0.1.0
 
-This is the initial release of qra.
+This is the initial release of qrensemble.
 
