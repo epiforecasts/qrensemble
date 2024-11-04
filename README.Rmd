@@ -32,3 +32,31 @@ example_quantile |>
     target = c(target_end_date = "2021-07-24")
   )
 ```
+
+## Contributors
+
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+All contributions to this project are gratefully acknowledged using the [`allcontributors` package](https://github.com/ropensci/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
+
+### Code
+
+
+<a href="https://github.com/epiforecasts/qrensemble/commits?author=sbfnk">sbfnk</a>, 
+<a href="https://github.com/epiforecasts/qrensemble/commits?author=seabbs">seabbs</a>
+
+
+
+### Issues
+
+
+<a href="https://github.com/epiforecasts/qrensemble/issues?q=is%3Aissue+commenter%3Anikosbosse">nikosbosse</a>
+
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
