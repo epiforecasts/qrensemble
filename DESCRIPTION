@@ -23,7 +23,7 @@ Imports:
 Suggests:
     knitr,
     rmarkdown,
-    roxyglobals
+    roxyglobals,
     testthat (>= 3.0.0)
 Remotes:
     ryantibs/quantgen/quantgen
