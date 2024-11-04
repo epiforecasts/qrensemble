@@ -55,3 +55,12 @@ forecast format produced by \code{\link[scoringutils:as_forecast_quantile]{scori
 Quantile Regression Average
 Calculates a quantile regression average for forecasts.
 }
+\examples{
+library("scoringutils")
+example_quantile |>
+  as_forecast_quantile() |>
+  qra(
+    group = c("target_type", "location", "location_name"),
+    target = c(target_end_date = "2021-07-24")
+  )
+}

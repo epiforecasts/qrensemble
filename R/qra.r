@@ -13,7 +13,7 @@
 ##' @param noncross logical; whether ot enforce non-crosssing of quantiles
 ##' @param ... passed to [quantgen::predict.quantile_ensemble()]; of particular
 ##'   interest might be setting \code{iso = TRUE} for isotonic regression
-##' @importFrom quantgen quantile_ensemble predict.quantile_ensemble
+##' @importFrom quantgen quantile_ensemble
 ##' @importFrom stats predict
 ##' @importFrom data.table := CJ data.table
 ##' @autoglobal
@@ -201,6 +201,14 @@ split_forecast <- function(forecast, forecast_unit, target) {
 ##' @importFrom scoringutils as_forecast_quantile get_forecast_unit
 ##' @importFrom checkmate assert_class
 ##' @export
+##' @examples
+##' library("scoringutils")
+##' example_quantile |>
+##'   as_forecast_quantile() |>
+##'   qra(
+##'     group = c("target_type", "location", "location_name"),
+##'     target = c(target_end_date = "2021-07-24")
+##'   )
 qra <- function(forecast, target, group = c(),
                 model = "Quantile Regression Average",
                 per_quantile_weights = FALSE, enforce_normalisation = TRUE,
