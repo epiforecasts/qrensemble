@@ -56,7 +56,8 @@ Quantile Regression Average
 Calculates a quantile regression average for forecasts.
 }
 \examples{
-scoringutils::example_quantile |>
+library("scoringutils")
+example_quantile |>
   as_forecast_quantile() |>
   qra(
     group = c("target_type", "location", "location_name"),

@@ -1,5 +1,5 @@
 forecasts <- scoringutils::example_quantile |>
-   scoringutils::as_forecast_quantile()
+  scoringutils::as_forecast_quantile()
 
 test_that("qra works", {
   res <- qra(
