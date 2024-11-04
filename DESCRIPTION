@@ -25,7 +25,7 @@ Suggests:
 Remotes: 
     ryantibs/quantgen/quantgen,
     epiforecasts/scoringutils@b370557
-License: MIT + file LICENSE
+License: MIT + file LICENSE.md
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
