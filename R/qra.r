@@ -13,7 +13,8 @@
 ##' @param noncross logical; whether ot enforce non-crosssing of quantiles
 ##' @param ... passed to [quantgen::predict.quantile_ensemble()]; of particular
 ##'   interest might be setting \code{iso = TRUE} for isotonic regression
-##' @importFrom quantgen quantile_ensemble
+##' @importFrom quantgen quantile_ensemble predict.quantile_ensemble
+##' @importFrom stats predict
 ##' @importFrom data.table := CJ data.table
 ##' @autoglobal
 ##' @keywords internal
@@ -90,6 +91,7 @@ qra_create_ensemble <- function(x, target, per_quantile_weights, intercept,
 #' included)
 #' @importFrom data.table setorder dcast as.data.table
 #' @importFrom quantgen combine_into_array
+#' @importFrom scoringutils get_forecast_unit
 #' @keywords internal
 qra_preprocess_forecasts <- function(forecast) {
   forecast_unit <- get_forecast_unit(forecast)
@@ -133,6 +135,7 @@ qra_preprocess_forecasts <- function(forecast) {
 #' @return a list with forecast (the forecast with models removed that have
 #'   missing forecasts, and the target forecasts removed)
 #' @importFrom data.table merge.data.table as.data.table
+#' @importFrom scoringutils get_forecast_unit
 #' @keywords internal
 #' @autoglobal
 split_forecast <- function(forecast, forecast_unit, target) {
@@ -195,7 +198,7 @@ split_forecast <- function(forecast, forecast_unit, target) {
 ##' @autoglobal
 ##' @importFrom data.table rbindlist setattr as.data.table
 ##' @importFrom purrr transpose map map2
-##' @importFrom scoringutils as_forecast_quantile
+##' @importFrom scoringutils as_forecast_quantile get_forecast_unit
 ##' @importFrom checkmate assert_class
 ##' @export
 qra <- function(forecast, target, group = c(),
