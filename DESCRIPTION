@@ -21,6 +21,8 @@ Imports:
     quantgen,
     scoringutils
 Suggests:
+    knitr,
+    rmarkdown,
     roxyglobals
 Remotes: 
     ryantibs/quantgen/quantgen,
