@@ -66,7 +66,8 @@ qra_create_ensemble <- function(x, target, per_quantile_weights, intercept,
   ## create return tibbles
   wtb <- CJ(
     model = unique(x$model),
-    quantile = unique(x$quantile_level)
+    quantile = unique(x$quantile_level),
+    sorted = FALSE
   )[, weight := weights]
 
   itb <- data.table(
@@ -221,8 +222,12 @@ qra <- function(forecast, target, group = c(),
   forecast <- as.data.table(forecast)
   forecast <- forecast[!is.na(predicted)]
 
-  ## first, split by group
-  ensemble <- split(forecast, by = group)
+  if (length(group) > 1) {
+    ## first, split by group
+    ensemble <- split(forecast, by = group)
+  } else {
+    ensemble <- list(forecast)
+  }
   ## next, re-convert to forecast format
   ensemble <- map(ensemble, as_forecast_quantile, forecast_unit = forecast_unit)
   ## next, split off target forecasts and check for completeness
