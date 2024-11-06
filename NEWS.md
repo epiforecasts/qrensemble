@@ -1,4 +1,4 @@
-# qrensemble (development version)
+# qrensemble 0.1.3
 
 - fixed a bug in model labelling
 - fixed a bug where the `group` argument could not be empty
