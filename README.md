@@ -26,14 +26,6 @@ deaths, for the 24th of July 2021
 ``` r
 library("qrensemble")
 library("scoringutils")
-```
-
-    ## scoringutils 2.0.0 introduces major changes. We'd love your feedback!
-    ## <https://github.com/epiforecasts/scoringutils/issues>. To use the old version,
-    ## run: `remotes::install_github('epiforecasts/scoringutils@v1.2.2')`
-    ## This message is displayed once per session.
-
-``` r
 example_quantile |>
   as_forecast_quantile() |>
   qra(
