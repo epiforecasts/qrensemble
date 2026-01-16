@@ -1,6 +1,6 @@
 ##' Create a qra ensemble
 ##'
-##' @param x input data frame containing \code{model}, \code{quantile},
+##' @param x input data frame containing \code{model}, \code{quantile_level},
 ##'   \code{boundary}, \code{value}, \code{interval} columns.
 ##' @param target input data frame
 ##'   \code{boundary}, \code{value}, \code{interval} columns.
@@ -66,12 +66,12 @@ qra_create_ensemble <- function(x, target, per_quantile_weights, intercept,
   ## create return tibbles
   wtb <- CJ(
     model = unique(x$model),
-    quantile = unique(x$quantile_level),
+    quantile_level = unique(x$quantile_level),
     sorted = FALSE
   )[, weight := weights]
 
   itb <- data.table(
-    quantile = unique(x$quantile),
+    quantile_level = unique(x$quantile_level),
     intercept = intercepts
   )
   return(list(

@@ -15,7 +15,7 @@ qra_create_ensemble(
 )
 }
 \arguments{
-\item{x}{input data frame containing \code{model}, \code{quantile},
+\item{x}{input data frame containing \code{model}, \code{quantile_level},
 \code{boundary}, \code{value}, \code{interval} columns.}
 
 \item{target}{input data frame
