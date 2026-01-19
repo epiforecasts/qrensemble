@@ -1,5 +1,7 @@
 # qrensemble (development version)
 
+# qrensemble 0.1.4
+
 - Updated to be compatible with scoringutils 2.x
 
 # qrensemble 0.1.3
