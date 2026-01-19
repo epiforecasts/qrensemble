@@ -19,7 +19,7 @@ Imports:
     data.table,
     purrr,
     quantgen,
-    scoringutils
+    scoringutils (>= 2.0.0)
 Suggests:
     knitr,
     rmarkdown,
@@ -32,7 +32,7 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxyglobals::global_roclet"))
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 VignetteBuilder: knitr
 Config/roxyglobals/filename: globals.R
 Config/roxyglobals/unique: FALSE
