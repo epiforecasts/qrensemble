@@ -1,5 +1,7 @@
 # qrensemble (development version)
 
+- Updated to be compatible with scoringutils 2.x
+
 # qrensemble 0.1.3
 
 - fixed a bug in model labelling
