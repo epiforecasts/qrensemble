@@ -16,10 +16,9 @@ qra_create_ensemble(
 }
 \arguments{
 \item{x}{input data frame containing \code{model}, \code{quantile_level},
-\code{boundary}, \code{value}, \code{interval} columns.}
+\code{observed}, and \code{predicted} columns.}
 
-\item{target}{input data frame
-\code{boundary}, \code{value}, \code{interval} columns.}
+\item{target}{input data frame containing the same columns as \code{x}.}
 
 \item{per_quantile_weights}{logical; whether to estimate weights per
 quantile}

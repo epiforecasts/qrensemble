@@ -1,9 +1,8 @@
 ##' Create a qra ensemble
 ##'
 ##' @param x input data frame containing \code{model}, \code{quantile_level},
-##'   \code{boundary}, \code{value}, \code{interval} columns.
-##' @param target input data frame
-##'   \code{boundary}, \code{value}, \code{interval} columns.
+##'   \code{observed}, and \code{predicted} columns.
+##' @param target input data frame containing the same columns as \code{x}.
 ##' @return data frame with weights per quantile (which won't vary unless
 ##'   \code{per_quantile_weights} is set to TRUE), per model
 ##' @param per_quantile_weights logical; whether to estimate weights per
@@ -74,11 +73,11 @@ qra_create_ensemble <- function(x, target, per_quantile_weights, intercept,
     quantile_level = unique(x$quantile_level),
     intercept = intercepts
   )
-  return(list(
+  list(
     weights = wtb,
     intercepts = itb,
     ensemble = target_forecast
-  ))
+  )
 }
 
 #' Preprocess forecasts for QRA
@@ -112,19 +111,17 @@ qra_preprocess_forecasts <- function(forecast) {
   pred_matrices <- lapply(pred_matrices, function(x) {
     dt <- dcast(x, ... ~ quantile_level, value.var = "predicted")
     dt[, paste(forecast_unit) := NULL]
-    return(as.matrix(dt))
+    as.matrix(dt)
   })
   ## combine into array
   pred_arrays <- combine_into_array(pred_matrices)
 
   quantile_levels <- unique(forecast$quantile_level)
 
-  return(
-    list(
-      predictions = pred_arrays,
-      data = data,
-      quantile_levels = quantile_levels
-    )
+  list(
+    predictions = pred_arrays,
+    data = data,
+    quantile_levels = quantile_levels
   )
 }
 
@@ -166,12 +163,10 @@ split_forecast <- function(forecast, forecast_unit, target) {
   target_forecast <- forecast[get(names(target)) == target]
   forecast <- forecast[get(names(target)) != target]
 
-  return(
-    list(
-      forecast = forecast,
-      target = target_forecast,
-      models = present_models
-    )
+  list(
+    forecast = forecast,
+    target = target_forecast,
+    models = present_models
   )
 }
 
@@ -255,5 +250,5 @@ qra <- function(forecast, target, group = c(),
   setattr(ret, "models", ensemble[["models"]])
   setattr(ret, "class", c("forecast_quantile", "qra", class(ret)[-1]))
 
-  return(ret)
+  ret
 }
