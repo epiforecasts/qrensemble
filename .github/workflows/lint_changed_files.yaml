@@ -13,6 +13,7 @@ concurrency:
 
 jobs:
   lint-changed-files:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
