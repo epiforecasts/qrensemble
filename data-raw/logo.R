@@ -9,12 +9,12 @@
 W <- 1732L; H <- 2000L                   # standard pointy-top hex canvas
 
 ## --- palette ---------------------------------------------------------------
-bg      <- "#102340"
+bg      <- "#FFFFFF"
 border  <- "#F2A65A"
-obs_col <- "#EDF2F8"
-mem_col <- c("#F2A65A", "#E86A92", "#9B8CE8", "#5AA9E6")
-ens_col <- "#6FE6D8"
-fan_col <- "#35C6BC"
+obs_col <- "#102340"
+mem_col <- c("#D98032", "#D14E77", "#7B69D6", "#3487C8")
+ens_col <- "#149A8E"
+fan_col <- "#2AA79E"
 
 ## --- geometry (data coords, y up; svg y flipped about `ybase`) --------------
 x0 <- 205; xf <- 690; x1 <- 1520         # chart start, forecast date, horizon
