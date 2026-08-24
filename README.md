@@ -1,5 +1,5 @@
 
-## Quantile regression average
+## Quantile regression average <img src="man/figures/logo.png" align="right" width="120" alt="" />
 
 NB: This is a transient package that will probably be merged into the
 [stackr package](https://github.com/nikosbosse/stackr).
