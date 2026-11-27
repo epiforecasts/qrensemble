@@ -24,3 +24,28 @@ test_that("qra produces sensible results in trivial cases", {
   )
   expect_equal(attr(res, "weights")[model == "model1"]$weight, 1)
 })
+
+test_that("qra does not depend on the row order of the target forecasts", {
+  forecasts <- data.table::data.table(
+    model = rep(c("good", "bad"), each = 6),
+    time = rep(rep(1:3, each = 2), 2),
+    site = rep(c("a", "b"), 6),
+    observed = rep(c(10, 100, 20, 200, 30, 300), 2)
+  )
+  forecasts <- rbind(
+    data.table::copy(forecasts)[, quantile_level := 0.25],
+    data.table::copy(forecasts)[, quantile_level := 0.75]
+  )
+  forecasts[, predicted := ifelse(model == "good", observed, 50)]
+  ## list the target rows with the models and sites in reverse order
+  forecasts <- rbind(
+    forecasts[time != 3],
+    forecasts[time == 3][order(model, -rank(site))]
+  )
+  res <- qra(
+    scoringutils::as_forecast_quantile(forecasts),
+    target = c(time = 3)
+  )
+  expect_equal(attr(res, "weights")[model == "good"]$weight, c(1, 1))
+  expect_equal(res$predicted, res$observed)
+})

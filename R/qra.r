@@ -89,13 +89,17 @@ qra_create_ensemble <- function(x, target, per_quantile_weights, intercept,
 #' containing the predictions), `data` (a data.table only containing the data)
 #' and `models` (a data.table listing the models and whether they are
 #' included)
-#' @importFrom data.table setorder dcast as.data.table
+#' @importFrom data.table setorderv dcast as.data.table
 #' @importFrom quantgen combine_into_array
 #' @importFrom scoringutils get_forecast_unit
 #' @keywords internal
 qra_preprocess_forecasts <- function(forecast) {
   forecast_unit <- get_forecast_unit(forecast)
-  setorder(forecast, "quantile_level")
+  ## sort so that rows line up with the dcast() output and models come in the
+  ## same order in the training and target forecasts
+  setorderv(
+    forecast, c("quantile_level", setdiff(forecast_unit, "model"), "model")
+  )
 
   ## make forecast a pure data.table
   forecast <- as.data.table(forecast)
